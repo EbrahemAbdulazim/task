@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <meta charset="UTF-8"> -->
+  <title>Form to Table</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input { 
+      margin: 5px; 
+      padding: 5px; 
+      display: block; 
+      text-align: left; /* النص يكتب من الشمال */
+    }
+    button { padding: 6px 12px; margin: 5px 0; cursor: pointer; }
+    table { border-collapse: collapse; margin-top: 20px; width: 60%; }
+    table, th, td { border: 1px solid black; }
+    th, td { 
+      padding: 8px 12px; 
+      text-align: left; /* النصوص في الجدول من الشمال */
+    }
+  </style>
+</head>
+<body>
+  <h3>Inputs</h3>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <input type="email" id="email" placeholder="Email">
+  <button onclick="addData()">Add</button>
+
+  <h3>Table</h3>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will appear here -->
+    </tbody>
+  </table>
+
+  <script>
+    function addData() {
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+      let email = document.getElementById("email").value;
+
+      if(username === "" || password === "" || email === "") {
+        alert("Please fill all fields");
+        return;
+      }
+
+      let table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
+      let newRow = table.insertRow();
+
+      newRow.insertCell(0).innerText = username;
+      newRow.insertCell(1).innerText = password;
+      newRow.insertCell(2).innerText = email;
+
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("email").value = "";
+    }
+  </script>
+</body>
+</html>
